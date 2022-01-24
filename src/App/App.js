@@ -15,6 +15,7 @@ class Contacts extends React.Component {
          if (prevState.contacts !== localStorage.getItem('contacts')) {
             localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
         }
+        ReactDOM.render(this.state.contacts.map(num => <li><span>{num.name}</span>: {num.number} <button type="button" id={num.idCont} onClick={this.deleteContact}>Delete</button></li>), document.getElementById('Contacts'));
     }
     componentDidMount() {
          this.setState({
@@ -46,11 +47,15 @@ class Contacts extends React.Component {
     }
     addNameContact = () => {
         this.clear()
-        if (this.state.contacts.find(num => num.name.toLowerCase() === this.state.name.toLowerCase())) {
+        if (this.state.contacts === null || this.state.contacts.find(num => num.name.toLowerCase() === this.state.name.toLowerCase()) === undefined) {
+
+        } else {
             alert('Its name never used');
             return
         }
-        this.state.contacts.push({ idCont: uuidv4(), name: this.state.name, number: this.state.number});
+        this.setState((state, props) => {
+            return {...state, contacts: [...this.state.contacts, { idCont: uuidv4(), name: this.state.name, number: this.state.number}]};
+        });
         setTimeout(() => {
             localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
         }, 2000)
