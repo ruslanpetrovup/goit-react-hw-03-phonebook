@@ -84,7 +84,7 @@ class Contacts extends React.Component {
         }, 250)
     }
     renderContacts = () => {
-        ReactDOM.render(this.state.contacts.map(num => <li><span>{num.name}</span>: {num.number} <button type="button" id={num.idCont} onClick={this.deleteContact}>Delete</button></li>), document.getElementById('Contacts'));
+        ReactDOM.render(this.state.contacts === null ? null : this.state.contacts.map(num => <li><span>{num.name}</span>: {num.number} <button type="button" id={num.idCont} onClick={this.deleteContact}>Delete</button></li>), document.getElementById('Contacts'));
         
     }
     render(){
