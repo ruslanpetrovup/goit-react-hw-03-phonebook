@@ -15,7 +15,7 @@ class Contacts extends React.Component {
          if (prevState.contacts !== localStorage.getItem('contacts')) {
             localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
         }
-        ReactDOM.render(this.state.contacts.map(num => <li><span>{num.name}</span>: {num.number} <button type="button" id={num.idCont} onClick={this.deleteContact}>Delete</button></li>), document.getElementById('Contacts'));
+        ReactDOM.render(this.state.contacts === null ? null : this.state.contacts.map(num => <li><span>{num.name}</span>: {num.number} <button type="button" id={num.idCont} onClick={this.deleteContact}>Delete</button></li>), document.getElementById('Contacts'));
     }
     componentDidMount() {
          this.setState({
