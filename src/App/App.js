@@ -75,6 +75,10 @@ class Contacts extends React.Component {
        const filterEl = this.state.contacts.filter(num => num.name.toLowerCase().includes(this.state.filter.toLowerCase()))
        ReactDOM.render(filterEl.map(num => <li><span>{num.name}</span>: {num.number} <button type="button" id={num.idCont} onClick={this.deleteContact}>Delete</button></li>), document.getElementById('Contacts'));
     }
+    renderContacts = () => {
+        ReactDOM.render(this.state.contacts === null ? null : this.state.contacts.map(num => <li><span>{num.name}</span>: {num.number} <button type="button" id={num.idCont} onClick={this.deleteContact}>Delete</button></li>), document.getElementById('Contacts'));
+        
+    }
     deleteContact = (idDelete) => {
         this.setState({
             contacts: this.state.contacts.filter(num => num.idCont !== idDelete.target.id)
@@ -82,10 +86,6 @@ class Contacts extends React.Component {
         setTimeout(() => {
             this.renderContacts()
         }, 250)
-    }
-    renderContacts = () => {
-        ReactDOM.render(this.state.contacts === null ? null : this.state.contacts.map(num => <li><span>{num.name}</span>: {num.number} <button type="button" id={num.idCont} onClick={this.deleteContact}>Delete</button></li>), document.getElementById('Contacts'));
-        
     }
     render(){
         return (
