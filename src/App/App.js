@@ -54,7 +54,7 @@ class Contacts extends React.Component {
             return
         }
         this.setState((state, props) => {
-            return {...this.state, contacts: [...this.state.contacts, { idCont: uuidv4(), name: this.state.name, number: this.state.number}]};
+            return {contacts: [...this.state.contacts, { idCont: uuidv4(), name: this.state.name, number: this.state.number}]};
         });
         setTimeout(() => {
             localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
